@@ -35,6 +35,7 @@ $routes->get('/user', 'User::index', ['filter' => 'role:user']);
 
 $routes->get('/', 'Dashboard::index');
 $routes->get('/dashboard', 'Dashboard::index');
+$routes->get('/profile', 'User::profile');
 // $routes->get('/login', 'Auth::login');
 // $routes->get('/register', 'Auth::register');
 // $routes->get('/forgot_password', 'Auth::forgot_password');
