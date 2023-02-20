@@ -35,7 +35,7 @@ class SessionAuth implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (!$request instanceof IncomingRequest) {
+        if (! $request instanceof IncomingRequest) {
             return;
         }
 
@@ -51,7 +51,7 @@ class SessionAuth implements FilterInterface
 
             // Block inactive users when Email Activation is enabled
             $user = $authenticator->getUser();
-            if ($user !== null && !$user->isActivated()) {
+            if ($user !== null && ! $user->isActivated()) {
                 $authenticator->logout();
 
                 return redirect()->route('login')
