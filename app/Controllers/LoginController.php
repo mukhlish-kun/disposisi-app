@@ -71,7 +71,7 @@ class LoginController extends BaseController
             return redirect()->route('auth-action-show')->withCookies();
         }
         $id = $authenticator->getUser()->id;
-        $users = new \App\Models\UserModel();
+        $users = new \App\Models\UsersModel();
         $user = $users->findById($id);
 
         session()->set([
