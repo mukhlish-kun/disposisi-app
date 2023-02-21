@@ -73,7 +73,8 @@ class LoginController extends BaseController
         $id = $authenticator->getUser()->id;
         $users = new \App\Models\UserModel();
         $user = $users->findById($id);
-        session()->set([    //set session (informasi identitas) dari tabel users
+
+        session()->set([
             'user_id' => $authenticator->getUser()->id,
             'email' => $result->extraInfo()->getEmail(),
             //     'foto_profile' => $user['id_alumni'],

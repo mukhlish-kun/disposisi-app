@@ -82,5 +82,13 @@ class AuthRoutes extends BaseConfig
                 'auth-action-verify', // Route name
             ],
         ],
+        'user-management' => [
+            [
+                'get',
+                'manajemen/user',
+                'Management::user',
+                'user-management', // Route name
+            ],
+        ],
     ];
 }
