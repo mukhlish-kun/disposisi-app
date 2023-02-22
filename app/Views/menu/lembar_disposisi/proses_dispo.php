@@ -138,6 +138,15 @@
                                     <option>Fadil</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="tanggal Penerimaan">Tanggal Penyelesaian</label>
+                                <input type="date" class="form-control" id="tanggalSelesai" />
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn-info btn-md btn-block" id="submitDisposisi">
+                                    Kirim
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
