@@ -27,20 +27,18 @@
                         <!-- general form elements -->
                         <div class="card card-dark">
                             <!-- /.card-header -->
-                            <!-- form start -->
-                            <!-- <form> -->
+                            <input type="hidden" name="id_surat" value="<?= $id ?>">
                             <div class="card-body" style="height: 14rem;">
                                 <div class="form-group">
                                     <label for="nomorAgenda">Nomor Agenda/registrasi</label>
-                                    <input type="text" class="form-control" id="nomorAgenda" placeholder="Masukkan Nomor Agenda" value="<?= $no_registrasi ?>" />
+                                    <input type="text" name="nomorAgenda" class="form-control" id="nomorAgenda" placeholder="Masukkan Nomor Agenda" value="<?= $no_registrasi ?>" />
                                 </div>
                                 <div class="form-group">
                                     <label for="tanggal Penerimaan">Tanggal Penerimaan</label>
-                                    <input type="date" class="form-control" id="tanggalPenerimaan" value="<?= $tanggal_penerimaan ?>" />
+                                    <input type="date" name="tanggalPenerimaan" class="form-control" id="tanggalPenerimaan" value="<?= $tanggal_penerimaan ?>" />
                                 </div>
                             </div>
                             <!-- /.card-body -->
-                            <!-- </form> -->
                         </div>
                         <!-- /.card -->
                     </div>
@@ -89,19 +87,19 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="tanggal Penerimaan">Tanggal Surat</label>
-                                    <input type="date" class="form-control" id="tanggalSurat" value="<?= $tanggal_surat ?>" />
+                                    <input type="date" name="tanggalSurat" class="form-control" id="tanggalSurat" value="<?= $tanggal_surat ?>" />
                                 </div>
                                 <div class="form-group">
                                     <label for="nomorSurat">Nomor Surat</label>
-                                    <input type="text" class="form-control" id="nomorSurat" placeholder="Masukkan Nomor Surat" value="<?= $no_surat ?>" />
+                                    <input type="text" name="nomorSurat" class="form-control" id="nomorSurat" placeholder="Masukkan Nomor Surat" value="<?= $no_surat ?>" />
                                 </div>
                                 <div class="form-group">
                                     <label for="asalSurat">Dari</label>
-                                    <input type="text" class="form-control" id="asalSurat" placeholder="Masukkan Asal Surat" value="<?= $asal_surat ?>" />
+                                    <input type="text" name="asalSurat" class="form-control" id="asalSurat" placeholder="Masukkan Asal Surat" value="<?= $asal_surat ?>" />
                                 </div>
                                 <div class="form-group">
                                     <label>Ringkasan Isi</label>
-                                    <textarea class="form-control" rows="3" id="ringkasanIsi" name="ringkasanIsi" placeholder="Masukkan Ringkasan Isi Surat"><?= $ringkasan_isi_surat ?></textarea>
+                                    <textarea class="form-control" name="ringkasanIsi" rows="3" id="ringkasanIsi" name="ringkasanIsi" placeholder="Masukkan Ringkasan Isi Surat"><?= $ringkasan_isi_surat ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="lampiranFile">Lampiran (PDF)</label>

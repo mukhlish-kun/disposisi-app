@@ -146,8 +146,15 @@ class RegisterController extends BaseController
         $authenticator->completeLogin($user);
 
         // Success!
-        return redirect()->to(config('Auth')->registerRedirect())
-            ->with('message', lang('Auth.registerSuccess'));
+        // return redirect()->to(config('Auth')->registerRedirect())
+        //     ->with('message', lang('Auth.registerSuccess'));
+
+        // return redirect()->to(base_url('logout'))->withCookies();
+        $url = config('Auth')->logoutRedirect();
+
+        auth()->logout();
+
+        return redirect()->to($url)->with('message', lang('Auth.registerSuccess'));
     }
 
     /**
