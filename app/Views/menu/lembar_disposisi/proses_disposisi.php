@@ -123,7 +123,7 @@
                             <input type="hidden" name="penerimaDisposisi" id="input-hidden">
 
                             <div class="form-group">
-                                <label>Disposisi</label>
+                                <label>Disposisi/Arahan</label>
                                 <textarea class="form-control" rows="3" name="isiDisposisi"><?= $isi ?></textarea>
                             </div>
                             <div class="form-group">

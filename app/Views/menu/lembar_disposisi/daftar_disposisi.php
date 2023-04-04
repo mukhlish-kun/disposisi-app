@@ -78,7 +78,8 @@
                                             </td>
                                             <td>
                                                 <a href="<?= base_url('/disposisi/proses/' . $data['id']) ?>" class="btn btn-primary btn-flat">Disposisikan</a>
-                                                <button type="button" class="btn btn-success btn-flat">Edit</button>
+                                                <a href="<?= base_url('/disposisi/edit/' . $data['id']) ?>" class="btn btn-success btn-flat">Edit</a>
+                                                <!-- <button type="button" class="btn btn-success btn-flat">Edit</button> -->
                                                 <button type="button" class="btn btn-danger btn-flat">Hapus</button>
                                             </td>
                                         </tr>

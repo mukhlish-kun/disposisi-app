@@ -101,9 +101,6 @@
                                             <input type="file" accept=".pdf" class="custom-file-input" id='lampiranFile' name="lampiranFile">
                                             <label class="custom-file-label" for="lampiranFile">Pilih file</label>
                                         </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">Upload</span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

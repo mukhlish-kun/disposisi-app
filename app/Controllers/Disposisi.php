@@ -130,11 +130,14 @@ class Disposisi extends BaseController
 
         try {
             $surat->updateData($post["id"], $data);
+            $check = $surat->builder()->db()->table('penerima_disposisi')->where('disposisi_id', $post["id"])->get()->getFirstRow('array');
+            if (isset($check)) {
+                $surat->builder()->db()->table('penerima_disposisi')->where('disposisi_id', $post["id"])->delete();
+            }
             $surat->builder()->db()->table('penerima_disposisi')->insertBatch($penerima_disposisi);
         } catch (\Throwable $th) {
             throw $th;
         }
-
         return redirect()->to(base_url('/disposisi/daftar'));
     }
 
@@ -144,7 +147,6 @@ class Disposisi extends BaseController
         $surat = $surat->getById($id_disposisi);
         $header = json_decode(json_encode($surat), true);
         $header['title'] = 'Edit Disposisi';
-
         echo view('partials/header', $header);
         echo view('partials/top_menu');
         echo view('partials/side_menu');
