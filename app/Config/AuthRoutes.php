@@ -90,5 +90,17 @@ class AuthRoutes extends BaseConfig
                 'user-management', // Route name
             ],
         ],
+        'disposisi' => [
+            [
+                'post',
+                'disposisi/tambah',
+                'Disposisi::createDisposisi_action',
+            ],
+            [
+                'post',
+                'disposisi/proses',
+                'Disposisi::proses_action',
+            ],
+        ]
     ];
 }

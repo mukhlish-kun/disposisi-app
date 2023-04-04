@@ -34,7 +34,8 @@
                                         <th>Email</th>
                                         <th>Nama Lengkap</th>
                                         <th>Role</th>
-                                        <th>isActive</th>
+                                        <th>Status Akun</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,8 +44,29 @@
                                             <td><?= $dataset['username'] ?></td>
                                             <td><?= $dataset['secret'] ?></td>
                                             <td><?= $dataset['username'] ?></td>
-                                            <td><?= $dataset['group'] ?></td>
-                                            <td><?= $dataset['active'] ?></td>
+                                            <td>
+                                                <!-- <php if (count($dataset['group']) > 1) : ?>
+                                                    <= implode($dataset['group']) ?>
+                                                <php else : ?> -->
+                                                <?= $dataset['group'] ?>
+                                                <!-- <php endif; ?> -->
+                                            </td>
+                                            <td>
+                                                <?php if ($dataset['active'] == 1) : ?>
+                                                    <span class="badge badge-pill badge-primary">Aktif</span>
+                                                <?php else : ?>
+                                                    <span class="badge badge-pill badge-info">Tidak Aktif</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <a href="<?= base_url('manajemen/edit_user') ?>"><span class="badge badge-pill badge-warning">edit</span></a>
+                                                <a href="<?= base_url('manajemen/edit_role') ?>"><span class="badge badge-pill badge-primary">ganti role</span></a>
+                                                <?php if ($dataset['active'] == 1) : ?>
+                                                    <a href="<?= base_url('manajemen/edit_delete') ?>"><span class="badge badge-pill badge-danger">nonaktifkan</span></a>
+                                                <?php else : ?>
+                                                    <a href="<?= base_url('manajemen/edit_delete') ?>"><span class="badge badge-pill badge-success">aktifkan</span></a>
+                                                <?php endif; ?>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

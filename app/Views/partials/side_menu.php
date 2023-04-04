@@ -2,8 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="<?= base_url() ?>" class="brand-link">
-        <img src="<?= base_url('adminLTE/dist/img/AdminLTELogo.png') ?>" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="<?= base_url('adminLTE/dist/img/AdminLTELogo.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">DISPOSISI-App</span>
     </a>
 
@@ -12,8 +11,7 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?= base_url('adminLTE/dist/img/user2-160x160.jpg') ?>" class="img-circle elevation-2"
-                    alt="User Image">
+                <img src="<?= base_url('adminLTE/dist/img/user2-160x160.jpg') ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="<?= base_url('/profile') ?>" class="d-block"><?= session('username') ?></a>
@@ -48,25 +46,25 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?=base_url('/disposisi/tambah')?>" class="nav-link">
+                            <a href="<?= base_url('/disposisi/tambah') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Buat Lembar</p>
                             </a>
                         </li>
                         <!-- <li class="nav-item">
-                            <a href="<?=base_url('/disposisi/daftar')?>" class="nav-link">
+                            <a href="<?= base_url('/disposisi/daftar') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Isi Perintah Disposisi</p>
                             </a>
                         </li> -->
                         <li class="nav-item">
-                            <a href="<?=base_url('/disposisi/daftar')?>" class="nav-link">
+                            <a href="<?= base_url('/disposisi/daftar') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Daftar Lembar Disposisi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../forms/editors.html" class="nav-link">
+                            <a href="<?= base_url('/disposisi/proses/1') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Laporan Hasil Disposisi</p>
                             </a>
