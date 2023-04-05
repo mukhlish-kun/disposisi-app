@@ -4,12 +4,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><?=$title?></h1>
+                    <h1><?= $title ?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#<?=base_url()?>">Home</a></li>
-                        <li class="breadcrumb-item active"><?=str_replace('/', ' / ',uri_string());?></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
+                        <li class="breadcrumb-item active"><?= str_replace('/', ' / ', uri_string()); ?></li>
                     </ol>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                                         :
                                     </td>
                                     <td>
-                                        123456789
+                                        <?= $no_registrasi ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -46,7 +46,7 @@
                                         :
                                     </td>
                                     <td>
-                                        23 Maret 2023
+                                        <?= $tanggal_penerimaan ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,7 +68,7 @@
                                         :
                                     </td>
                                     <td>
-                                        22 Maret 2023
+                                        <?= $tanggal_surat ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -79,7 +79,7 @@
                                         :
                                     </td>
                                     <td>
-                                        987654321
+                                        <?= $no_surat ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -90,7 +90,7 @@
                                         :
                                     </td>
                                     <td>
-                                        BPS Provinsi Jawa Tengah
+                                        <?= $asal_surat ?>
                                     </td>
                                 </tr>
                                 <!-- garis bawah tabel -->
@@ -105,42 +105,41 @@
                             </tbody>
                         </table>
                         <h5><b>Ringkasan Isi</b></h5>
-                        <p class="text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro, recusandae
-                            maiores nobis hic veritatis magni enim obcaecati unde odio assumenda tempora pariatur vitae
-                            consequatur iusto ducimus. Autem ex aperiam natus.
+                        <p class="text-sm">
+                            <?= $ringkasan_isi_surat ?>
                         </p>
                     </div>
                     <div class="col-md-6">
                         <h5 class="text-dark mt-5 mb-2"><b>Lampiran</b></h5>
                         <div class="embed-responsive embed-responsive-4by3">
-                            <iframe class="embed-responsive-item" src="<?=base_url('/uploads/pdf/contoh.pdf')?>"
-                                allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" src="<?= base_url() . getenv('PATH_PDF') . "/" . $lampiran_surat ?>" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 mt-3">
-                        <form>
+                        <form action="<?= base_url('/disposisi/proses') ?>" method="post">
+                            <input type="hidden" name="id" value="<?= $id ?>">
+                            <input type="hidden" name="penerimaDisposisi" id="input-hidden">
+
                             <div class="form-group">
-                                <label>Disposisi</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <label>Disposisi/Arahan</label>
+                                <textarea class="form-control" rows="3" name="isiDisposisi"><?= $isi ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Diteruskan Kepada</label>
-                                <select class="select2bs4" multiple="multiple" data-placeholder="Pilih satu atau lebih"
-                                    style="width: 100%;">
-                                    <option>Fayat</option>
-                                    <option>Rodi</option>
-                                    <option>Velia</option>
-                                    <option>Jae</option>
-                                    <option>Fadil</option>
-                                    <option>Roi</option>
-                                    <option>Fadil</option>
+                                <select class="select2bs4" multiple="multiple" id="penerimaDisposisi" data-placeholder="Pilih satu atau lebih" style="width: 100%;">
+                                    <?php foreach ($user as $num) : ?>
+                                        <option value="<?= $num['id'] ?>"><?= $num['username'] ?></option>
+                                        # code...
+                                    <?php endforeach;  ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="tanggal Penerimaan">Tanggal Penyelesaian</label>
-                                <input type="date" class="form-control" id="tanggalSelesai" />
+                                <input type="date" class="form-control" id="tanggalSelesai" name="tanggalSelesai" <?php if (isset($tanggal_penyelesaian)) {
+                                                                                                                        echo ('value="' . $tanggal_penyelesaian . '"');
+                                                                                                                    } ?> />
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn-info btn-md btn-block" id="submitDisposisi">

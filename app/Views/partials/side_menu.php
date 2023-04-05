@@ -48,25 +48,25 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?=base_url('/disposisi/tambah')?>" class="nav-link">
+                            <a href="<?= base_url('/disposisi/tambah') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Buat Lembar</p>
                             </a>
                         </li>
                         <!-- <li class="nav-item">
-                            <a href="<?=base_url('/disposisi/daftar')?>" class="nav-link">
+                            <a href="<?= base_url('/disposisi/daftar') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Isi Perintah Disposisi</p>
                             </a>
                         </li> -->
                         <li class="nav-item">
-                            <a href="<?=base_url('/disposisi/daftar')?>" class="nav-link">
+                            <a href="<?= base_url('/disposisi/daftar') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Daftar Lembar Disposisi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('/disposisi/laporan') ?>" class="nav-link">
+                            <a href="../forms/editors.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Laporan Hasil Disposisi</p>
                             </a>

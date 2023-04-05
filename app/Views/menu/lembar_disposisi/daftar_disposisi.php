@@ -4,12 +4,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><?=$title?></h1>
+                    <h1><?= $title ?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#<?=base_url()?>">Home</a></li>
-                        <li class="breadcrumb-item active"><?=str_replace('/', ' / ',uri_string());?></li>
+                        <li class="breadcrumb-item"><a href="#<?= base_url() ?>">Home</a></li>
+                        <li class="breadcrumb-item active"><?= str_replace('/', ' / ', uri_string()); ?></li>
                     </ol>
                 </div>
             </div>
@@ -55,20 +55,9 @@
                                         <td>Belum Didisposisi</td>
                                         <td>
                                             <a href="<?=base_url('/disposisi/proses')?>"
-                                                class="btn btn-primary btn-flat m-1">Disposisikan</a>
-                                            <a href="<?=base_url('/disposisi/proses')?>"
-                                                class="btn btn-success btn-flat m-1">Edit</a>
-                                            <a href="<?=base_url('/disposisi/hapus')?>"
-                                                class="btn btn-danger btn-flat m-1">Hapus</a>
-                                        </td>
-                                        <td>
-                                            <a href="<?=base_url('disposisi/laporan')?>"
-                                                class="btn btn-primary btn-flat m-1">Buat
-                                                laporan</a>
-                                            <button type="button" class="btn btn-success btn-flat m-1">Edit
-                                                laporan</button>
-                                            <button type="button" class="btn btn-danger btn-flat m-1">Hapus
-                                                laporan</button>
+                                                class="btn btn-primary btn-flat">Disposisikan</a>
+                                            <button type="button" class="btn btn-success btn-flat">Edit</button>
+                                            <button type="button" class="btn btn-danger btn-flat">Hapus</button>
                                         </td>
                                     </tr>
                                 </tbody>
