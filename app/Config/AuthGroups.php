@@ -14,7 +14,7 @@ class AuthGroups extends ShieldAuthGroups
      * --------------------------------------------------------------------
      * The group that a newly registered user is added to.
      */
-    public string $defaultGroup = 'admin';
+    public string $defaultGroup = 'peserta';
 
     /**
      * --------------------------------------------------------------------
@@ -33,23 +33,19 @@ class AuthGroups extends ShieldAuthGroups
     public array $groups = [
         'superadmin' => [
             'title'       => 'Super Admin',
-            'description' => 'Complete control of the site.',
+            'description' => 'Memegang kendali semua yang ada di webapp.',
+        ],
+        'KaBPS' => [
+            'title'       => 'Kepala BPS Kabupaten/Kota',
+            'description' => 'Orang yang berhak mendisposisikan surat yang masuk.',
         ],
         'admin' => [
             'title'       => 'Admin',
-            'description' => 'Day to day administrators of the site.',
+            'description' => 'Orang yang bertanggung jawab untuk mengelola manajemen.',
         ],
-        'developer' => [
-            'title'       => 'Developer',
-            'description' => 'Site programmers.',
-        ],
-        'user' => [
-            'title'       => 'User',
-            'description' => 'General users of the site. Often customers.',
-        ],
-        'beta' => [
-            'title'       => 'Beta User',
-            'description' => 'Has access to beta-level features.',
+        'peserta' => [
+            'title'       => 'Peserta Disposisi',
+            'description' => 'Orang yang dapat ditunjuk dalam surat disposisi.',
         ],
     ];
 
@@ -63,13 +59,12 @@ class AuthGroups extends ShieldAuthGroups
      * If a permission is not listed here it cannot be used.
      */
     public array $permissions = [
-        'admin.access'        => 'Can access the sites admin area',
-        'admin.settings'      => 'Can access the main site settings',
-        'users.manage-admins' => 'Can manage other admins',
-        'users.create'        => 'Can create new non-admin users',
-        'users.edit'          => 'Can edit existing non-admin users',
-        'users.delete'        => 'Can delete existing non-admin users',
-        'beta.access'         => 'Can access beta-level features',
+        'admin.access'      => 'Laman yang hanya bisa diakses admin',
+        'admin.settings'    => 'Setting yang hanya bisa diakses admin',
+        'admin.delete'      => 'Can delete existing non-admin users',
+        'peserta.control'     => 'Laman yang dapat diakses oleh peserta',
+        'peserta.create'      => 'Can create new non-admin users',
+        'peserta.edit'        => 'Can edit existing non-admin users',
     ];
 
     /**
@@ -81,26 +76,21 @@ class AuthGroups extends ShieldAuthGroups
     public array $matrix = [
         'superadmin' => [
             'admin.*',
-            'users.*',
-            'beta.*',
+            'peserta.*',
+        ],
+        'KaBPS' => [
+            'admin.*',
+            'peserta.*',
         ],
         'admin' => [
-            'admin.access',
-            'users.create',
+            'admin.*',
+            'peserta.create',
             'users.edit',
-            'users.delete',
-            'beta.access',
         ],
-        'developer' => [
-            'admin.access',
-            'admin.settings',
-            'users.create',
-            'users.edit',
-            'beta.access',
-        ],
-        'user' => [],
-        'beta' => [
-            'beta.access',
+        'peserta' => [
+            'peserta.control',
+            'peserta.create',
+            'peserta.edit',
         ],
     ];
 }

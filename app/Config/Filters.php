@@ -25,7 +25,7 @@ class Filters extends BaseConfig
         'tokens'     => \CodeIgniter\Shield\Filters\TokenAuth::class,
         'chain'      => \CodeIgniter\Shield\Filters\ChainAuth::class,
         'auth-rates' => \CodeIgniter\Shield\Filters\AuthRates::class,
-        'role'       => \App\Filters\RoleFilter::class,
+        'isAuthorized'       => \App\Filters\isAuthorized::class,
     ];
 
     /**
