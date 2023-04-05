@@ -48,21 +48,21 @@
                                 <tbody>
                                     <?php $i = 1;
                                     foreach ($surat as $data) : ?>
-                                        <tr>
-                                            <td>
-                                                <?= $i ?>
-                                            </td>
-                                            <td>
-                                                <?= $data['asal_surat'] ?>
-                                            </td>
-                                            <td>
-                                                <?= $data['tanggal_penerimaan'] ?>
-                                            </td>
-                                            <td>
-                                                <?= $data['ringkasan_isi_surat'] ?>
-                                            </td>
-                                            <td>
-                                                <?php switch ($data['status']) {
+                                    <tr>
+                                        <td>
+                                            <?= $i ?>
+                                        </td>
+                                        <td>
+                                            <?= $data['asal_surat'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $data['tanggal_penerimaan'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $data['ringkasan_isi_surat'] ?>
+                                        </td>
+                                        <td>
+                                            <?php switch ($data['status']) {
                                                     case '1':
                                                         echo "Belum Didisposisikan";
                                                         break;
@@ -76,14 +76,24 @@
                                                         echo "Sudah Selesai";
                                                         break;
                                                 }; ?>
-                                            </td>
-                                            <td>
-                                                <a href="<?= base_url('/disposisi/proses/' . $data['id']) ?>" class="btn btn-primary btn-flat">Disposisikan</a>
-                                                <a href="<?= base_url('/disposisi/edit/' . $data['id']) ?>" class="btn btn-success btn-flat">Edit</a>
-                                                <!-- <button type="button" class="btn btn-success btn-flat">Edit</button> -->
-                                                <button type="button" class="btn btn-danger btn-flat">Hapus</button>
-                                            </td>
-                                        </tr>
+                                        </td>
+                                        <td>
+                                            <a href="<?= base_url('/disposisi/proses/' . $data['id']) ?>"
+                                                class="btn btn-primary btn-flat m-1">Disposisikan</a>
+                                            <a href="<?= base_url('/disposisi/edit/' . $data['id']) ?>"
+                                                class="btn btn-success btn-flat m-1">Edit</a>
+                                            <!-- <button type="button" class="btn btn-success btn-flat">Edit</button> -->
+                                            <button type="button" class="btn btn-danger btn-flat m-1">Hapus</button>
+                                        </td>
+                                        <td>
+                                            <a href="<?= base_url('/disposisi/laporan/' . $data['id']) ?>"
+                                                class="btn btn-primary btn-flat m-1">Buat</a>
+                                            <a href="<?= base_url('/disposisi/laporan/edit/' . $data['id']) ?>"
+                                                class="btn btn-success btn-flat m-1">Edit</a>
+                                            <!-- <button type="button" class="btn btn-success btn-flat">Edit</button> -->
+                                            <button type="button" class="btn btn-danger btn-flat m-1">Hapus</button>
+                                        </td>
+                                    </tr>
                                     <?php $i++;
                                     endforeach; ?>
                                 </tbody>
