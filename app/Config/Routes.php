@@ -58,8 +58,9 @@ $routes->get('/profile', 'User::profile');
 //route disposisi
 $routes->get('/disposisi/tambah', 'Disposisi::tambah');
 $routes->get('/disposisi/daftar', 'Disposisi::daftar');
-$routes->get('/disposisi/proses', 'Disposisi::proses');
-$routes->get('/disposisi/edit', 'Disposisi::edit');
+$routes->get('/disposisi/proses/(:num)', 'Disposisi::proses/$1');
+$routes->get('/disposisi/edit/(:num)', 'Disposisi::edit/$1');
+$routes->get('/disposisi/laporan', 'Disposisi::laporan');
 route($routes);
 
 /*
