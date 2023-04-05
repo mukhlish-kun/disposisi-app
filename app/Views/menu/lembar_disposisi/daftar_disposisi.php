@@ -47,55 +47,60 @@
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($surat as $data) : ?>
-                                    <tr>
-                                        <td>
-                                            <?= $i ?>
-                                        </td>
-                                        <td>
-                                            <?= $data['asal_surat'] ?>
-                                        </td>
-                                        <td>
-                                            <?= $data['tanggal_penerimaan'] ?>
-                                        </td>
-                                        <td>
-                                            <?= $data['ringkasan_isi_surat'] ?>
-                                        </td>
-                                        <td>
-                                            <?php switch ($data['status']) {
-                                                    case '1':
-                                                        echo "Belum Didisposisikan";
-                                                        break;
-                                                    case '2':
-                                                        echo "Sudah Didisposisikan";
-                                                        break;
-                                                    case '3':
-                                                        echo "Belum Selesai";
-                                                        break;
-                                                    default:
-                                                        echo "Sudah Selesai";
-                                                        break;
-                                                }; ?>
-                                        </td>
-                                        <td>
-                                            <a href="<?= base_url('/disposisi/proses/' . $data['id']) ?>"
-                                                class="btn btn-primary btn-flat m-1">Disposisikan</a>
-                                            <a href="<?= base_url('/disposisi/edit/' . $data['id']) ?>"
-                                                class="btn btn-success btn-flat m-1">Edit</a>
-                                            <!-- <button type="button" class="btn btn-success btn-flat">Edit</button> -->
-                                            <button type="button" class="btn btn-danger btn-flat m-1">Hapus</button>
-                                        </td>
-                                        <td>
-                                            <a href="<?= base_url('/disposisi/laporan/' . $data['id']) ?>"
-                                                class="btn btn-primary btn-flat m-1">Buat</a>
-                                            <a href="<?= base_url('/disposisi/laporan/edit/' . $data['id']) ?>"
-                                                class="btn btn-success btn-flat m-1">Edit</a>
-                                            <!-- <button type="button" class="btn btn-success btn-flat">Edit</button> -->
-                                            <button type="button" class="btn btn-danger btn-flat m-1">Hapus</button>
-                                        </td>
-                                    </tr>
-                                    <?php $i++;
-                                    endforeach; ?>
+                                    $count = 0;
+                                    foreach ($surat as $data) :
+                                        if ($data['status'] <> "4") : ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $i ?>
+                                                </td>
+                                                <td>
+                                                    <?= $data['asal_surat'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= $data['tanggal_penerimaan'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= $data['ringkasan_isi_surat'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php switch ($data['status']) {
+                                                        case '1':
+                                                            echo "Belum Didisposisikan";
+                                                            break;
+                                                        case '2':
+                                                            echo "Sudah Didisposisikan";
+                                                            break;
+                                                        case '3':
+                                                            echo "Belum Selesai";
+                                                            break;
+                                                        default:
+                                                            echo "Sudah Selesai";
+                                                            break;
+                                                    }; ?>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= base_url('/disposisi/proses/' . $data['id']) ?>" class="btn btn-primary btn-flat">Disposisikan</a>
+                                                    <a href="<?= base_url('/disposisi/edit/' . $data['id']) ?>" class="btn btn-success btn-flat">Edit</a>
+                                                    <!-- <button type="button" class="btn btn-success btn-flat">Edit</button> -->
+                                                    <button type="button" class="btn btn-danger btn-flat">Hapus</button>
+                                                </td>
+                                                <td>
+                                                    <a href="" class="btn btn-info btn-lg">
+                                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $count++;
+                                        endif;
+                                        $i++;
+                                    endforeach;
+                                    if ($count == 0) : ?>
+                                        <tr>
+                                            <td colspan="7" class="text-center">Tidak ada data yang dapat ditampilkan</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>

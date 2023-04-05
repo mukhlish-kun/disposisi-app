@@ -67,6 +67,8 @@
                         </li>
                         <!-- <li class="nav-item">
                             <a href="../forms/editors.html" class="nav-link">
+                        <li class="nav-item">
+                            <a href="<?= base_url('/disposisi/laporan') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Laporan Hasil Disposisi</p>
                             </a>
@@ -85,48 +87,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../forms/general.html" class="nav-link">
+                            <a href="<?= base_url('/manajemen/create_user') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tambah User</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../forms/advanced.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Edit Role User</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../forms/editors.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Daftar User</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-cog"></i>
-                        <p>
-                            Manajemen Role
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="../forms/general.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tambah User</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../forms/advanced.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Edit Role User</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../forms/editors.html" class="nav-link">
+                            <a href="<?= base_url('/manajemen/user') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Daftar User</p>
                             </a>

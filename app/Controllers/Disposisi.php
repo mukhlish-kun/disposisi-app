@@ -181,7 +181,6 @@ class Disposisi extends BaseController
             'asal_surat'            => $data['asalSurat'],
             'ringkasan_isi_surat'   => $data['ringkasanIsi'],
             'created_by'            => session('user_id'),
-            'status'                => 1,
         ];
 
         if (isset($new_name)) {
