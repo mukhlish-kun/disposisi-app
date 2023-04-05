@@ -44,4 +44,14 @@ class Disposisi extends BaseController
         echo view('partials/footer');
     }
 
+    public function laporan()
+    {
+        $header['title'] = 'Laporan Disposisi';
+        echo view('partials/header', $header);
+        echo view('partials/top_menu');
+        echo view('partials/side_menu');
+        echo view('menu/lembar_disposisi/laporan_disposisi', $header);
+        echo view('partials/footer');
+    }
+
 }
