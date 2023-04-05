@@ -225,7 +225,16 @@ class Disposisi extends BaseController
         echo view('partials/header', $header);
         echo view('partials/top_menu');
         echo view('partials/side_menu');
-        echo view('menu/lembar_disposisi/laporan_disposisi', $header);
+        echo view('menu/lembar_disposisi/buat_laporan', $header);
+        echo view('partials/footer');
+    }
+    public function edit_laporan()
+    {
+        $header['title'] = 'Edit Laporan Disposisi';
+        echo view('partials/header', $header);
+        echo view('partials/top_menu');
+        echo view('partials/side_menu');
+        echo view('menu/lembar_disposisi/edit_laporan', $header);
         echo view('partials/footer');
     }
 }

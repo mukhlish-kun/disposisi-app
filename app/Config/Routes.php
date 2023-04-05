@@ -60,7 +60,8 @@ $routes->get('/disposisi/tambah', 'Disposisi::tambah');
 $routes->get('/disposisi/daftar', 'Disposisi::daftar');
 $routes->get('/disposisi/proses/(:num)', 'Disposisi::proses/$1');
 $routes->get('/disposisi/edit/(:num)', 'Disposisi::edit/$1');
-$routes->get('/disposisi/laporan', 'Disposisi::laporan');
+$routes->get('/disposisi/laporan/(:num)', 'Disposisi::laporan');
+$routes->get('/disposisi/laporan/edit/(:num)', 'Disposisi::edit_laporan');
 route($routes);
 
 /*
