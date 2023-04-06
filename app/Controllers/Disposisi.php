@@ -77,6 +77,15 @@ class Disposisi extends BaseController
             'surat' => $surat,
         ];
 
+        if (session('role')[0] == 'peserta') {
+            $surat = new \App\Models\DisposisiModel();
+            $surat = $surat->getJob(session('user_id'));
+            $header = [
+                'title' => 'Daftar Lembar Disposisi',
+                'surat' => $surat,
+            ];
+        }
+
         $header['title'] = 'Daftar Lembar Disposisi';
         echo view('partials/header', $header);
         echo view('partials/top_menu');
@@ -87,7 +96,7 @@ class Disposisi extends BaseController
 
     public function proses($id_disposisi)
     {
-        if (session('role')[0] <> 'KaBPS') {
+        if (session('role')[0] == 'peserta') {
             return redirect()->to(base_url('/disposisi/daftar'));
         }
 
@@ -265,10 +274,15 @@ class Disposisi extends BaseController
         return redirect()->to(base_url('/disposisi/daftar'));
     }
 
-    // public function laporan_approve()
-    // {
-
-    // }
+    public function laporan_approve($id_disposisi)
+    {
+        $surat = new \App\Models\DisposisiModel();
+        $data = array(
+            'status' => 3
+        );
+        $surat->updateData($id_disposisi, $data);
+        return redirect()->to(base_url('/disposisi/daftar'));
+    }
 
     public function edit_laporan()
     {
@@ -282,6 +296,10 @@ class Disposisi extends BaseController
 
     public function delete($id_disposisi)
     {
+        if (session('role')[0] == 'peserta') {
+            return redirect()->to(base_url('/disposisi/daftar'));
+        }
+
         $surat = new \App\Models\DisposisiModel();
         $data = array(
             'status' => 4
@@ -292,6 +310,10 @@ class Disposisi extends BaseController
 
     public function undelete($id_disposisi)
     {
+        if (session('role')[0] == 'peserta') {
+            return redirect()->to(base_url('/disposisi/daftar'));
+        }
+
         $surat = new \App\Models\DisposisiModel();
         $data = array(
             'status' => 2

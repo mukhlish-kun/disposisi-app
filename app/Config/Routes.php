@@ -65,6 +65,7 @@ $routes->group('disposisi', function ($routes) {
     $routes->get('delete/(:num)', 'Disposisi::delete/$1');
     $routes->get('undelete/(:num)', 'Disposisi::undelete/$1');
     $routes->get('laporan/(:num)', 'Disposisi::laporan/$1');
+    $routes->get('laporan_approval/(:num)', 'Disposisi::laporan_approve/$1');
     $routes->get('laporan/edit/(:num)', 'Disposisi::edit_laporan/$1');
 });
 route($routes);

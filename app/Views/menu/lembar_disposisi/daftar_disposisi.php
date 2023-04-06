@@ -24,15 +24,14 @@
                     <div class="card">
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>Status Lembar Disposisi</label>
                                 <select class="form-control" id="statusLembar">
                                     <option>Belum Didisposisikan</option>
                                     <option>Sudah Didisposisikan</option>
-                                    <option>Belum Selesai</option>
                                     <option>Sudah Selesai</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -80,11 +79,13 @@
                                                     }; ?>
                                                 </td>
                                                 <td>
-                                                    <?php if (session('role')[0] == 'KaBPS') : ?>
+                                                    <?php if (session('role')[0] <> 'peserta' && $data['status'] <> '3') : ?>
                                                         <a href="<?= base_url('/disposisi/proses/' . $data['id']) ?>" class="btn btn-primary btn-rounded">Disposisikan</a>
                                                     <?php endif; ?>
                                                     <a href="<?= base_url('/disposisi/edit/' . $data['id']) ?>" class="btn btn-success btn-rounded">Edit</a>
-                                                    <a href="<?= base_url('/disposisi/delete/' . $data['id']) ?>" class="btn btn-danger btn-rounded">Delete</a>
+                                                    <?php if (session('role')[0] <> 'peserta') : ?>
+                                                        <a href="<?= base_url('/disposisi/delete/' . $data['id']) ?>" class="btn btn-danger btn-rounded">Delete</a>
+                                                    <?php endif; ?>
                                                 </td>
                                                 <td>
                                                     <?php if (session('role')[0] == 'peserta') : ?>
@@ -127,11 +128,13 @@
                                                     }; ?>
                                                 </td>
                                                 <td>
-                                                    <?php if (session('role')[0] == 'KaBPS') : ?>
+                                                    <?php if (session('role')[0] <> 'peserta' && $data['status'] <> '3') : ?>
                                                         <a href="<?= base_url('/disposisi/proses/' . $data['id']) ?>" class="btn btn-primary btn-rounded">Disposisikan</a>
                                                     <?php endif; ?>
                                                     <a href="<?= base_url('/disposisi/edit/' . $data['id']) ?>" class="btn btn-success btn-rounded">Edit</a>
-                                                    <a href="<?= base_url('/disposisi/undelete/' . $data['id']) ?>" class="btn btn-danger btn-rounded">Undelete</a>
+                                                    <?php if (session('role')[0] <> 'peserta') : ?>
+                                                        <a href="<?= base_url('/disposisi/undelete/' . $data['id']) ?>" class="btn btn-danger btn-rounded">Undelete</a>
+                                                    <?php endif; ?>
                                                 </td>
                                                 <td>
                                                     <a href="<?= base_url('/disposisi/laporan/' . $data['id']) ?>" class="btn btn-info btn-rounded">Lihat</a>

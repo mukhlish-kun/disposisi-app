@@ -128,7 +128,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 mt-3">
-                        <form action="<?= base_url('/disposisi/laporan_approval') ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('/disposisi/laporan_approval/' . $id) ?>" method="get">
                             <input type="hidden" name="id" value="<?= $id ?>">
 
                             <div class="form-group">

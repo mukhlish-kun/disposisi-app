@@ -47,4 +47,19 @@ class DisposisiModel extends Model
             ->where("disposisi.id", $id)
             ->get()->getRowArray();
     }
+
+    // public function getList()
+    // {
+    //     return $this->builder()
+    //         ->select('id, asal_surat, tanggal_penerimaan, ringkasan_isi_surat, tanggal_penerimaan, status')
+    //         ->get()->getResultArray();
+    // }
+    public function getJob($id)
+    {
+        return $this->builder()
+            ->select('id, asal_surat, tanggal_penerimaan, ringkasan_isi_surat, tanggal_penerimaan, status')
+            ->join('penerima_disposisi', 'penerima_disposisi.disposisi_id = disposisi.id')
+            ->where("user_id", $id)
+            ->get()->getResultArray();
+    }
 }

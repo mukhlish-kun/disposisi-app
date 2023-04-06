@@ -39,7 +39,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($data as $dataset) : ?>
+                                    <?php foreach ($data as $dataset) : dd($dataset) ?>
                                         <tr>
                                             <td><?= $dataset['username'] ?></td>
                                             <td><?= $dataset['secret'] ?></td>
@@ -59,13 +59,13 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td>
-                                                <a href="<?= base_url('manajemen/edit_user') ?>"><span class="badge badge-pill badge-warning">edit</span></a>
+                                                <!-- <a href="<?= base_url('manajemen/edit_user') ?>"><span class="badge badge-pill badge-warning">edit</span></a> -->
                                                 <a href="<?= base_url('manajemen/edit_role') ?>"><span class="badge badge-pill badge-primary">ganti role</span></a>
-                                                <?php if ($dataset['active'] == 1) : ?>
+                                                <!-- <php if ($dataset['active'] == 1) : ?>
                                                     <a href="<?= base_url('manajemen/edit_delete') ?>"><span class="badge badge-pill badge-danger">nonaktifkan</span></a>
-                                                <?php else : ?>
+                                                <php else : ?>
                                                     <a href="<?= base_url('manajemen/edit_delete') ?>"><span class="badge badge-pill badge-success">aktifkan</span></a>
-                                                <?php endif; ?>
+                                                <php endif; ?> -->
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
