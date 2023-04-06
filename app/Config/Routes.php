@@ -40,7 +40,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-// $routes->setAutoRoute(false);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -56,12 +56,17 @@ $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/profile', 'User::profile');
 
 //route disposisi
-$routes->get('/disposisi/tambah', 'Disposisi::tambah');
-$routes->get('/disposisi/daftar', 'Disposisi::daftar');
-$routes->get('/disposisi/proses/(:num)', 'Disposisi::proses/$1');
-$routes->get('/disposisi/edit/(:num)', 'Disposisi::edit/$1');
-$routes->get('/disposisi/laporan/(:num)', 'Disposisi::laporan');
-$routes->get('/disposisi/laporan/edit/(:num)', 'Disposisi::edit_laporan');
+// $routes->group('disposisi', ['filter' => 'isAuthorized'], function ($routes) {
+$routes->group('disposisi', function ($routes) {
+    $routes->get('tambah', 'Disposisi::tambah');
+    $routes->get('daftar', 'Disposisi::daftar');
+    $routes->get('proses/(:num)', 'Disposisi::proses/$1');
+    $routes->get('edit/(:num)', 'Disposisi::edit/$1');
+    $routes->get('delete/(:num)', 'Disposisi::delete/$1');
+    $routes->get('undelete/(:num)', 'Disposisi::undelete/$1');
+    $routes->get('laporan/(:num)', 'Disposisi::laporan/$1');
+    $routes->get('laporan/edit/(:num)', 'Disposisi::edit_laporan/$1');
+});
 route($routes);
 
 /*

@@ -57,7 +57,17 @@
                                         :
                                     </td>
                                     <td>
-                                        Sangat Rahasia
+                                        <?php switch ($tingkat_keamanan) {
+                                            case 'b':
+                                                echo "Biasa";
+                                                break;
+                                            case 'r':
+                                                echo "Rahasia";
+                                                break;
+                                            default:
+                                                echo "Sangat Rahasia";
+                                                break;
+                                        }; ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -131,7 +141,6 @@
                                 <select class="select2bs4" multiple="multiple" id="penerimaDisposisi" data-placeholder="Pilih satu atau lebih" style="width: 100%;">
                                     <?php foreach ($user as $num) : ?>
                                         <option value="<?= $num['id'] ?>"><?= $num['username'] ?></option>
-                                        # code...
                                     <?php endforeach;  ?>
                                 </select>
                             </div>

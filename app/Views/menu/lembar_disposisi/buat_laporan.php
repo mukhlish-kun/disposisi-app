@@ -35,7 +35,7 @@
                                         :
                                     </td>
                                     <td>
-                                        123456
+                                        <?= $no_registrasi; ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -46,7 +46,7 @@
                                         :
                                     </td>
                                     <td>
-                                        6/4/2000
+                                        <?= $tanggal_penerimaan ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -57,7 +57,17 @@
                                         :
                                     </td>
                                     <td>
-                                        Sangat Rahasia
+                                        <?php switch ($tingkat_keamanan) {
+                                            case 'b':
+                                                echo "Biasa";
+                                                break;
+                                            case 'r':
+                                                echo "Rahasia";
+                                                break;
+                                            default:
+                                                echo "Sangat Rahasia";
+                                                break;
+                                        }; ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,7 +78,7 @@
                                         :
                                     </td>
                                     <td>
-                                        6/4/2000
+                                        <?= $tanggal_surat ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -79,7 +89,7 @@
                                         :
                                     </td>
                                     <td>
-                                        12345
+                                        <?= $no_surat ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -90,7 +100,7 @@
                                         :
                                     </td>
                                     <td>
-                                        12345
+                                        <?= $asal_surat ?>
                                     </td>
                                 </tr>
                                 <!-- garis bawah tabel -->
@@ -106,58 +116,52 @@
                         </table>
                         <h5><b>Ringkasan Isi</b></h5>
                         <p class="text-sm">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus ullam harum omnis corrupti
-                            distinctio architecto nobis eligendi a, pariatur iste nesciunt consectetur error asperiores
-                            exercitationem voluptatem. Quos officia cumque optio.
+                            <?= $ringkasan_isi_surat ?>
                         </p>
                     </div>
                     <div class="col-md-6">
                         <h5 class="text-dark mt-5 mb-2"><b>Lampiran</b></h5>
                         <div class="embed-responsive embed-responsive-4by3">
-                            <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" src="<?= base_url() . getenv('PATH_PDF') . "/" . $lampiran_surat ?>" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 mt-3">
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="">
-                            <input type="hidden" name="penerimaDisposisi" id="input-hidden">
+                        <form action="<?= base_url('/disposisi/laporan') ?>" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="<?= $id ?>">
 
                             <div class="form-group">
                                 <label>Disposisi/Arahan</label>
-                                <textarea class="form-control" rows="3" name="isiDisposisi"
-                                    disabled>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia minima, illum eveniet corrupti consectetur explicabo fugiat aliquid repellendus repellat numquam saepe porro cum culpa laboriosam fugit excepturi at! Quas, eius.</textarea>
+                                <textarea class="form-control" rows="3" name="isiDisposisi" disabled><?= $isi ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Diteruskan Kepada</label>
                                 <ul>
-                                    <li>Fadil</li>
-                                    <li>Fadel</li>
-                                    <li>Fadul</li>
+                                    <?php foreach ($penerima_disposisi as $user) : ?>
+                                        <li><?= $user['username'] ?></li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                             <div class="form-group">
                                 <label for="tanggal Penerimaan">Rencana Tanggal Penyelesaian</label>
-                                <input type="text" class="form-control" id="tanggalSelesai" name="tanggalSelesai"
-                                    value="6 April 2023" disabled />
+                                <input type="text" class="form-control" id="tanggalSelesai" name="tanggalSelesai" <?php if (isset($tanggal_penyelesaian)) {
+                                                                                                                        echo ('value="' . $tanggal_penyelesaian . '"');
+                                                                                                                    } ?> disabled />
                             </div>
                             <div class="form-group">
                                 <label for="tanggal Penerimaan">Realisasi Tanggal Penyelesaian</label>
-                                <input type="date" class="form-control" id="tanggalSelesaiReal"
-                                    name="tanggalSelesaiReal" />
+                                <input type="date" class="form-control" id="tanggalSelesaiReal" name="tanggalSelesaiReal" />
                             </div>
                             <div class="form-group">
                                 <label>Isi laporan</label>
-                                <textarea class="form-control" rows="3"
-                                    name="isiLaporan">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia minima, illum eveniet corrupti consectetur explicabo fugiat aliquid repellendus repellat numquam saepe porro cum culpa laboriosam fugit excepturi at! Quas, eius.</textarea>
+                                <textarea class="form-control" rows="3" name="isiLaporan"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="lampiranFile">Lampiran laporan (PDF)</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" accept=".pdf" class="custom-file-input"
-                                            id='lampiranFileLaporan' name="lampiranFile">
+                                        <input type="file" accept=".pdf" class="custom-file-input" id='lampiranFile' name="lampiranFile">
                                         <label class="custom-file-label" for="lampiranFile">Pilih file</label>
                                     </div>
                                 </div>

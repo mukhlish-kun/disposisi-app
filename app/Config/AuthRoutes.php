@@ -106,6 +106,11 @@ class AuthRoutes extends BaseConfig
                 'disposisi/edit',
                 'Disposisi::edit_action',
             ],
+            [
+                'post',
+                'disposisi/laporan',
+                'Disposisi::laporan_action',
+            ],
         ]
     ];
 }

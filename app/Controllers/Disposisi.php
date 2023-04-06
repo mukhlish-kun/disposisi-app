@@ -88,6 +88,10 @@ class Disposisi extends BaseController
 
     public function proses($id_disposisi)
     {
+        if (session('role')[0] <> 'KaBPS') {
+            return redirect()->to(base_url('/disposisi/daftar'));
+        }
+
         $surat = new \App\Models\DisposisiModel();
         $user = new \App\Models\UsersModel();
         $surat = $surat->getById($id_disposisi);
@@ -196,30 +200,28 @@ class Disposisi extends BaseController
         return redirect()->to(base_url('/disposisi/daftar'));
     }
 
-    // public function laporan($id_disposisi)
-    // {
-    //     $surat = new \App\Models\DisposisiModel();
-    //     $user = new \App\Models\UsersModel();
-    //     $surat = $surat->getById($id_disposisi);
-    //     $user = $user->getList();
-
-    //     $header = json_decode(json_encode($surat), true);
-    //     $header['title'] = 'Proses Disposisi';
-    //     $header['user'] = $user;
-    //     if (isset($header['isi_disposisi'])) {
-    //         $header['isi'] = $header['isi_disposisi'];
-    //     } else {
-    //         $header['isi'] = "";
-    //     }
-    //     echo view('partials/header', $header);
-    //     echo view('partials/top_menu');
-    //     echo view('partials/side_menu');
-    //     echo view('menu/lembar_disposisi/proses_disposisi', $header);
-    //     echo view('partials/footer');
-    // }
-
-    public function laporan()
+    public function laporan($id_disposisi)
     {
+        // if (condition) {
+        //     # code...
+        // }
+        $surat = new \App\Models\DisposisiModel();
+        $user = new \App\Models\UsersModel();
+        $disposisi = new \App\Models\DisposisiUser();
+        $surat = $surat->getById($id_disposisi);
+        $user = $user->getList();
+        $disposisi = $disposisi->getList($id_disposisi);
+
+        $header = json_decode(json_encode($surat), true);
+        $header['title'] = 'Proses Disposisi';
+        $header['user'] = $user;
+        $header['penerima_disposisi'] = $disposisi;
+        if (isset($header['isi_disposisi'])) {
+            $header['isi'] = $header['isi_disposisi'];
+        } else {
+            $header['isi'] = "";
+        }
+
         $header['title'] = 'Laporan Disposisi';
         echo view('partials/header', $header);
         echo view('partials/top_menu');
@@ -227,6 +229,40 @@ class Disposisi extends BaseController
         echo view('menu/lembar_disposisi/buat_laporan', $header);
         echo view('partials/footer');
     }
+
+    public function laporan_action()
+    {
+        $disposisi = new \App\Models\DisposisiUser();
+        $lampiran = $this->request->getFile('lampiranFile');
+        if ($lampiran->isValid()) {
+            $time = Time::now()->getTimestamp();
+            $name = $lampiran->getName();
+            $new_name = md5($name . $time . session('user_id')) . ".pdf";
+
+            $path = getenv('PATH_LAPORAN') . "/" . $name;
+            $new_path = getenv('PATH_LAPORAN') . "/" . $new_name;
+
+            $lampiran->move(getenv('PATH_LAPORAN') . "/");
+            rename($path, $new_path);
+        } else {
+            $new_name = null;
+        }
+
+        $data = $this->request->getVar();
+        $insert = [
+            'disposisi_id'        => $data['id'],
+            'tanggal_realisasi'   => $data['tanggalSelesaiReal'],
+            'isi_laporan'         => $data['isiLaporan'],
+            'lampiran_laporan'    => $new_name,
+            'created_by'          => session('user_id'),
+        ];
+
+        $disposisi->db->table('laporan_disposisi')->insert($insert);
+        // dd($insert);
+
+        return redirect()->to(base_url('/disposisi/daftar'));
+    }
+
     public function edit_laporan()
     {
         $header['title'] = 'Edit Laporan Disposisi';
@@ -235,5 +271,25 @@ class Disposisi extends BaseController
         echo view('partials/side_menu');
         echo view('menu/lembar_disposisi/edit_laporan', $header);
         echo view('partials/footer');
+    }
+
+    public function delete($id_disposisi)
+    {
+        $surat = new \App\Models\DisposisiModel();
+        $data = array(
+            'status' => 4
+        );
+        $surat->updateData($id_disposisi, $data);
+        return redirect()->to(base_url('/disposisi/daftar'));
+    }
+
+    public function undelete($id_disposisi)
+    {
+        $surat = new \App\Models\DisposisiModel();
+        $data = array(
+            'status' => 2
+        );
+        $surat->updateData($id_disposisi, $data);
+        return redirect()->to(base_url('/disposisi/daftar'));
     }
 }

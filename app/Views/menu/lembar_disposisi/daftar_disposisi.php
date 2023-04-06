@@ -72,27 +72,72 @@
                                                             echo "Sudah Didisposisikan";
                                                             break;
                                                         case '3':
-                                                            echo "Belum Selesai";
+                                                            echo "Sudah Selesai";
                                                             break;
                                                         default:
-                                                            echo "Sudah Selesai";
+                                                            echo "Dihapus";
                                                             break;
                                                     }; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?= base_url('/disposisi/proses/' . $data['id']) ?>" class="btn btn-primary btn-flat">Disposisikan</a>
-                                                    <a href="<?= base_url('/disposisi/edit/' . $data['id']) ?>" class="btn btn-success btn-flat">Edit</a>
-                                                    <!-- <button type="button" class="btn btn-success btn-flat">Edit</button> -->
-                                                    <button type="button" class="btn btn-danger btn-flat">Hapus</button>
+                                                    <?php if (session('role')[0] == 'KaBPS') : ?>
+                                                        <a href="<?= base_url('/disposisi/proses/' . $data['id']) ?>" class="btn btn-primary btn-rounded">Disposisikan</a>
+                                                    <?php endif; ?>
+                                                    <a href="<?= base_url('/disposisi/edit/' . $data['id']) ?>" class="btn btn-success btn-rounded">Edit</a>
+                                                    <a href="<?= base_url('/disposisi/delete/' . $data['id']) ?>" class="btn btn-danger btn-rounded">Delete</a>
                                                 </td>
                                                 <td>
-                                                    <a href="" class="btn btn-info btn-lg">
-                                                        <span class="glyphicon glyphicon-eye-open"></span>
-                                                    </a>
+                                                    <?php if (session('role')[0] == 'peserta') : ?>
+                                                        <a href="<?= base_url('/disposisi/laporan/' . $data['id']) ?>" class="btn btn-info btn-rounded">Upload</a>
+                                                    <?php else : ?>
+                                                        <a href="<?= base_url('/disposisi/laporan/lihat/' . $data['id']) ?>" class="btn btn-info btn-rounded">Lihat</a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php
                                             $count++;
+                                        elseif ($data['status'] == "4" && (session('role')[0] == 'admin' || session('role')[0] == 'superadmin')) : ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $i ?>
+                                                </td>
+                                                <td>
+                                                    <?= $data['asal_surat'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= $data['tanggal_penerimaan'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= $data['ringkasan_isi_surat'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php switch ($data['status']) {
+                                                        case '1':
+                                                            echo "Belum Didisposisikan";
+                                                            break;
+                                                        case '2':
+                                                            echo "Sudah Didisposisikan";
+                                                            break;
+                                                        case '3':
+                                                            echo "Sudah Selesai";
+                                                            break;
+                                                        default:
+                                                            echo "Dihapus";
+                                                            break;
+                                                    }; ?>
+                                                </td>
+                                                <td>
+                                                    <?php if (session('role')[0] == 'KaBPS') : ?>
+                                                        <a href="<?= base_url('/disposisi/proses/' . $data['id']) ?>" class="btn btn-primary btn-rounded">Disposisikan</a>
+                                                    <?php endif; ?>
+                                                    <a href="<?= base_url('/disposisi/edit/' . $data['id']) ?>" class="btn btn-success btn-rounded">Edit</a>
+                                                    <a href="<?= base_url('/disposisi/undelete/' . $data['id']) ?>" class="btn btn-danger btn-rounded">Undelete</a>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= base_url('/disposisi/laporan/' . $data['id']) ?>" class="btn btn-info btn-rounded">Lihat</a>
+                                                </td>
+                                            </tr>
+                                        <?php $count++;
                                         endif;
                                         $i++;
                                     endforeach;
