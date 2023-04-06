@@ -64,7 +64,6 @@ class Disposisi extends BaseController
         }
 
         $surat->db->table('disposisi')->insert($insert);
-        // dd($insert);
 
         return redirect()->to(base_url('/disposisi/daftar'));
     }
@@ -176,7 +175,6 @@ class Disposisi extends BaseController
         }
 
         $data = $this->request->getVar();
-        // dd($data);
         $insert = [
             'no_registrasi'         => $data['nomorAgenda'],
             'tanggal_penerimaan'    => $data['tanggalPenerimaan'],
@@ -202,17 +200,14 @@ class Disposisi extends BaseController
 
     public function laporan($id_disposisi)
     {
-        // if (condition) {
-        //     # code...
-        // }
         $surat = new \App\Models\DisposisiModel();
         $user = new \App\Models\UsersModel();
         $disposisi = new \App\Models\DisposisiUser();
-        $surat = $surat->getById($id_disposisi);
+        $surat = $surat->getFull($id_disposisi);
         $user = $user->getList();
         $disposisi = $disposisi->getList($id_disposisi);
 
-        $header = json_decode(json_encode($surat), true);
+        $header = $surat;
         $header['title'] = 'Proses Disposisi';
         $header['user'] = $user;
         $header['penerima_disposisi'] = $disposisi;
@@ -222,12 +217,21 @@ class Disposisi extends BaseController
             $header['isi'] = "";
         }
 
-        $header['title'] = 'Laporan Disposisi';
-        echo view('partials/header', $header);
-        echo view('partials/top_menu');
-        echo view('partials/side_menu');
-        echo view('menu/lembar_disposisi/buat_laporan', $header);
-        echo view('partials/footer');
+        if (session('role')[0] <> 'peserta') {
+            $header['title'] = 'Laporan Disposisi';
+            echo view('partials/header', $header);
+            echo view('partials/top_menu');
+            echo view('partials/side_menu');
+            echo view('menu/lembar_disposisi/laporan', $header);
+            echo view('partials/footer');
+        } else {
+            $header['title'] = 'Laporan Disposisi';
+            echo view('partials/header', $header);
+            echo view('partials/top_menu');
+            echo view('partials/side_menu');
+            echo view('menu/lembar_disposisi/buat_laporan', $header);
+            echo view('partials/footer');
+        }
     }
 
     public function laporan_action()
@@ -256,12 +260,15 @@ class Disposisi extends BaseController
             'lampiran_laporan'    => $new_name,
             'created_by'          => session('user_id'),
         ];
-
         $disposisi->db->table('laporan_disposisi')->insert($insert);
-        // dd($insert);
 
         return redirect()->to(base_url('/disposisi/daftar'));
     }
+
+    // public function laporan_approve()
+    // {
+
+    // }
 
     public function edit_laporan()
     {

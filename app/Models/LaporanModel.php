@@ -4,15 +4,12 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class DisposisiModel extends Model
+class LaporanModel extends Model
 {
 
-    protected $table = 'disposisi';
-    protected $allowedFields = [
-        'tanggal_penerimaan', 'tanggal_penyelesaian', 'tingkat_keamanan', 'tanggal_surat', 'no_surat', 'asal_surat', 'ringkasan_isi_surat', 'isi_disposisi', 'status', 'paraf', 'deleted_at'
-    ];
+    protected $table = 'laporan';
 
-    public function getLast()
+    public function isDone($id)
     {
         return $this->builder()
             ->select('id, no_registrasi')

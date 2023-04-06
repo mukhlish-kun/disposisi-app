@@ -90,7 +90,7 @@
                                                     <?php if (session('role')[0] == 'peserta') : ?>
                                                         <a href="<?= base_url('/disposisi/laporan/' . $data['id']) ?>" class="btn btn-info btn-rounded">Upload</a>
                                                     <?php else : ?>
-                                                        <a href="<?= base_url('/disposisi/laporan/lihat/' . $data['id']) ?>" class="btn btn-info btn-rounded">Lihat</a>
+                                                        <a href="<?= base_url('/disposisi/laporan/' . $data['id']) ?>" class="btn btn-info btn-rounded">Lihat</a>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
